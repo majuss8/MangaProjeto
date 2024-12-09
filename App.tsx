@@ -16,6 +16,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import { StripeProvider } from '@stripe/stripe-react-native';
 
 import {
   Colors,
@@ -68,6 +69,11 @@ function App(): React.JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
+      <StripeProvider publishableKey="pk_test_51OzW4C05RkUBQsgX9TeM6ErwYHa1z6sLU3Ky3hva4c3jfZackmVWBRVHV737gD2VuC1jaos03PGeTEXoVbjLbgFw00tim5F7Pn">
+        <View>
+          <Text>Bem-vindo ao Stripe!</Text>
+        </View>
+      </StripeProvider>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
