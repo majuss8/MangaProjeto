@@ -2,12 +2,12 @@ const express = require('express');
 const cors = require('cors');
 const Stripe = require('stripe');
 const admin = require('firebase-admin');
+const menuRoutes = require('./routes/menuRoutes');
 
 require('dotenv').config();
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-// Configurar Firebase Admin
 admin.initializeApp({
   credential: admin.credential.cert(require('./path/to/your/firebase-admin-sdk.json')),
 });
@@ -15,8 +15,8 @@ admin.initializeApp({
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use('/menu', menuRoutes);
 
-// Rota para processar pagamento
 app.post('/create-payment-intent', async (req, res) => {
   const { amount } = req.body;
   try {
